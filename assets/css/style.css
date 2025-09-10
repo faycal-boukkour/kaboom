@@ -1,0 +1,403 @@
+/* Police */
+@import url('https://fonts.googleapis.com/css2?family=Chewy&family=Sen:wght@400..800&display=swap');
+
+* {
+  font-family: "Chewy", system-ui;
+  font-size: 1.15rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #000000;
+  color: #fff;
+}
+
+a {
+  text-decoration: none;
+  
+}
+
+ul {
+  list-style: none;
+}
+
+h1 {
+  font-size: 2.25rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+h2, h3 {
+  margin-bottom: 15px;
+  font-size: 1.5rem;
+}
+
+p {
+  text-align: justify;
+}
+
+.red {
+  color: #D52E2E;
+}
+
+.green {
+  color: #469F8B;
+}
+
+.yellow {
+  color: #FFC200;
+}
+
+/* Navbar */
+.navbar {
+  background-color: #000000;
+  padding: 30px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.navbar .logo img {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  height: 100px;
+  transition: all 0.3s ease;
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navbar ul li {
+  margin: 0 10px;
+}
+
+.navbar ul li a {
+  text-decoration: none;
+  color: #D52E2E;
+  -webkit-text-stroke: 1px #00000028; 
+  -webkit-text-fill-color: #D52E2E; 
+  font-size: 1.5rem;
+  padding: 8px 15px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  letter-spacing: -3px;
+}
+
+.navbar ul li a:hover {
+  color: #a22020;
+  -webkit-text-stroke: 1px #00000028; 
+  -webkit-text-fill-color: #a22020; 
+}
+
+.navbar ul li a.play {
+  background-color: #000;
+  color: #FFC200;
+  -webkit-text-stroke: 1px #00000028; 
+  -webkit-text-fill-color: #FFC200; 
+    letter-spacing: -3px;
+}
+
+.navbar ul li a.play:hover {
+  color: #c59702;
+  -webkit-text-stroke: 1px #00000028; 
+  -webkit-text-fill-color: #c59702; 
+}
+
+/* Burger menu */
+.burger {
+  display: none;
+  font-size: 2.5rem;
+  color: #FFC200;
+  -webkit-text-stroke: 1px #ffffff; /* contour blanc */
+  -webkit-text-fill-color: #c59702; /* couleur de remplissage */
+  cursor: pointer;
+  z-index: 1001;
+  margin: 0px 10px;
+  padding: 4px 10px;
+}
+
+.logo-burger {
+  display: none;
+}
+
+/* Main content */
+main.content {
+  padding: 20px;
+  max-width: 800px; 
+  margin: auto;
+}
+
+.carte {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.carte img {
+  height: 200px;
+  border-radius: 10px;
+}
+
+.carte p {
+  text-align: center;
+}
+
+/* Configuration */
+.config {
+  border: 2px solid #111;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Inputs */
+input[type="number"], input[type="text"] {
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #000;
+  width: 120px;
+  text-align: center;
+  margin: 5px 0;
+  
+}
+
+input[type="number"]:disabled {
+  background-color: #333;
+  color: #888;
+}
+
+/* Buttons */
+.btn {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  padding: 6px 20px;
+  border: none;
+  border-radius: 8px;
+  background-color: #000;
+  color: #469F8B;
+  box-shadow: 0 4px 8px rgba(254, 252, 252, 0.1);
+  font-size: 1em;
+  cursor: pointer;
+  margin: 5px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+button span {
+  font-size: 1.8rem;
+}
+
+button:hover:not(:disabled) {
+  background-color: #FFC200;
+  color: #000;
+}
+
+/* Bouton KABOOM */
+.btn-kaboom {
+  display: inline-block;
+  padding: 25px 50px;
+  background: url('../img/logo_sf.png') no-repeat center/contain;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 6px; 
+  box-shadow: 0 4px 8px rgba(254, 252, 252, 0.1);
+  transition: all 0.5s ease;
+}
+
+.btn-kaboom:hover:not(:disabled) {
+  background-color: #469F8B;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Style pour le titre de manche et fin de partie */
+.round-title {
+  text-align: center;
+  font-size: 2em;
+  margin: 20px 0;
+  transition: all 0.5s ease;
+}
+
+/* Effet spécial pour la fin de partie */
+.fin-de-partie {
+  color: #FFC200;
+  font-size: 2.5em;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); color: #FFC200; }
+  50% { transform: scale(1.1); color: #FFD700; }
+  100% { transform: scale(1); color: #FFC200; }
+}
+
+/* Tables */
+table.score-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  text-align: center;
+}
+
+table.score-table th, table.score-table td {
+  border: 1px solid #fff;
+  padding: 8px;
+}
+
+table.score-table th {
+  background-color: #222;
+  color: #bdbcbc;
+}
+
+table.score-table td {
+  background-color: #000;
+}
+
+table.score-table td input {
+  width: 60px;
+}
+
+/* Manche gagnante */
+table.score-table td.winner {
+  background-color: lightgreen !important;
+  color: #000;
+}
+
+/* Footer */
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  padding: 15px;
+  background-color: #111;
+  color: #fff;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+
+  .navbar {
+    position: relative;
+    flex-wrap: wrap;
+  }
+  
+  .navbar ul {
+    position: fixed;
+    top: 0;
+    right: -100%; /* hors écran à droite */
+    height: 100vh;
+    width: 100%;
+    background-color: #000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    gap: 20px;
+    transition: right 0.5s ease;
+    z-index: 1000;
+  }
+
+  .navbar ul.show {
+     right: 0;
+  }
+
+  .navbar ul li {
+    margin: 0;
+  }
+
+  .navbar ul li a {  
+    font-size: 1.9rem;
+  }
+
+  /* Logo plus petit sur mobile */
+  .navbar .logo img {
+    max-width: 100%;
+    object-fit: contain;
+    top: 25px;
+    left: 0;
+    height: 80px;
+  }
+
+  /* Masquer logo quand menu ouvert */
+  .logo.hide {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .burger {
+    display: block;
+    margin-left: auto;
+  }
+
+  .logo-burger {
+    display: block;
+  }
+
+  .logo-burger img {
+    height: 150px;
+    margin-top: 100px;
+  }
+
+  main.content {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  .carte-large {
+    max-width: 100%;
+    object-fit: contain;
+    height: auto;
+  }
+
+  input[type="number"], input[type="text"] {
+    width: 100%;
+  }
+
+  table.score-table td input {
+    width: 100%;
+  }
+  
+  footer {
+    flex-direction: column;
+  }
+}
+
+

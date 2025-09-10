@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KABOOM - Classement</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="assets/img/logo_sf.png" alt="Logo">
+    </div>
+    <div class="burger" onclick="toggleMenu()">☰</div>
+    <ul id="menu">
+      <li><a href="index.html">Accueil</a></li>
+      <li><a href="classement.html">Classement</a></li> 
+      <li><a href="jouer.html" class="play">Jouer</a></li>
+      <li class="logo-burger"><a href="index.html"><img src="assets/img/logo_sf.png" alt="Logo"></a></li>
+    </ul>
+  </nav>
+
+  <main class="content">
+    <h1>🏆 Classement</h1>
+    <div id="classementContainer"></div>
+    <div class="btn">
+        <button onclick="reinitialiserClassement()">Réinitialiser le classement</button>
+    </div>
+  </main>
+
+  <footer>
+    <p><a href="index.html" class="red">KABOOM</a> © 2025 - Tous droits reservés</p> 
+    <p>Designed by <a href="https://faycal-boukkour.github.io/portfolio/" target="_blank" class="yellow">Fayçal BOUKKOUR</a></p>
+  </footer>
+
+  
+  <script>
+    // --- Menu burger ---
+    function toggleMenu() {
+    const menu = document.getElementById("menu");
+    const logo = document.querySelector(".navbar .logo");
+
+    menu.classList.toggle("show");
+    logo.classList.toggle("hide");
+    }
+
+    // Récupérer les joueurs
+    let joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
+
+    function afficherClassement(){
+      if(joueurs.length === 0){
+        document.getElementById("classementContainer").innerHTML = "<p style='text-align:center;'>Aucune partie enregistrée.</p>";
+        return;
+      }
+
+      // Calculer le total de chaque joueur
+      joueurs.forEach(j => {
+        j.totalScore = j.scores.reduce((acc, val) => acc + val, 0);
+      });
+
+      // Trier les joueurs par score croissant (le plus bas en haut)
+      joueurs.sort((a, b) => a.totalScore - b.totalScore);
+
+      let html = `<table class="score-table">
+        <thead>
+          <tr>
+            <th>Joueur</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${joueurs.map(j => {
+            let couleur = "#000"; // couleur par défaut
+            if(j.totalScore === joueurs[0].totalScore) couleur = "#469F8B"; // gagnant
+            if(j.totalScore === joueurs[joueurs.length-1].totalScore) couleur = "#D52E2E"; // perdant
+            return `<tr>
+                      <td>${j.nom}</td>
+                      <td style="background-color:${couleur}; color:#fff;">${j.totalScore}</td>
+                    </tr>`;
+          }).join("")}
+        </tbody>
+      </table>`;
+
+      document.getElementById("classementContainer").innerHTML = html;
+    }
+
+    afficherClassement();
+
+    function reinitialiserClassement(){
+      if(confirm("Voulez-vous réinitialiser le classement ?")){
+        localStorage.removeItem("joueurs");
+        localStorage.removeItem("equipes");
+        localStorage.removeItem("nbManches");
+        location.reload();
+      }
+    }
+  </script>
+  
+</body>
+</html>
