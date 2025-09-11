@@ -6,6 +6,7 @@
   <title>KABOOM - Jouer</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
   <nav class="navbar">
     <div class="logo">
@@ -20,7 +21,7 @@
     </ul>
   </nav>
 
-  <main class="content ">
+  <main class="content play">
 
     <!-- Section configuration des joueurs -->
     <section id="config-section" class="config">
@@ -29,9 +30,11 @@
       <input type="number" id="nbJoueurs" min="2" max="6"><br>
       <div id="joueursConfig"></div>
       <div class="btn">
-      <button onclick="startGame()">Valider</button>
+        <button onclick="startGame()">Valider</button>
       </div>
     </section>
+
+    <br>
 
     <!-- Section manche / jeu -->
     <section id="game-section" class="hidden">
@@ -39,30 +42,38 @@
       <div id="mancheContainer"></div>
       <div id="tableauScores"></div>
       <div class="btn">
-        <button onclick="reinitialiserPartie()">Nouvelle partie</button>
+        <button onclick="reinitialiserPartie()">Nouvelle partie ?</button>
       </div>
-      
     </section>
-
   </main>
 
+  <!-- Footer -->
   <footer>
-    <p><a href="index.html" class="red">KABOOM</a> © 2025 - Tous droits reservés</p> 
-    <p>Designed by <a href="https://faycal-boukkour.github.io/portfolio/" target="_blank" class="yellow">Fayçal BOUKKOUR</a></p>
+    <p><a href="index.html" class="yellow">KABOOM</a> © 2025 - Tous droits reservés</p> 
+    <p><a href="mentions.html" class="red">Mentions légales</a></p>
+    <p>Designed by <a href="https://faycal-boukkour.github.io/portfolio/" target="_blank" class="green">Fayçal BOUKKOUR</a></p>
   </footer>
 
   <script src="assets/js/script.js"></script>
   <script>
     // Reprendre partie si données dans localStorage
-    if(localStorage.getItem("joueurs")){
-      joueurs = JSON.parse(localStorage.getItem("joueurs"));
-      equipes = JSON.parse(localStorage.getItem("equipes")) || [];
-      nbManches = parseInt(localStorage.getItem("nbManches")) || 1;
+    if(localStorage.getItem("partieEnCours")){
+      const partie = JSON.parse(localStorage.getItem("partieEnCours"));
+      joueurs = partie.joueurs || [];
+      equipes = partie.equipes || [];
+      nbManches = partie.nbManches || 1;
       mancheActuelle = joueurs[0].scores.length + 1 || 1;
 
       document.getElementById("config-section").style.display = "none";
       document.getElementById("game-section").classList.remove("hidden");
-      initJeu();
+
+      if(partie.statut === "finie"){
+        afficherTableauFinal();
+        document.getElementById("round-title").textContent = "🎉 Fin de partie";
+        document.getElementById("round-title").classList.add("fin-de-partie");
+      } else {
+        initJeu();
+      }
     }
   </script>
 </body>

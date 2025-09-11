@@ -20,81 +20,89 @@
     </ul>
   </nav>
 
-  <main class="content">
-    <h1>🏆 Classement</h1>
+  <main class="content result">
+    <h1 class="stamp">🏆 Classement</h1>
     <div id="classementContainer"></div>
+    <br>
     <div class="btn">
-        <button onclick="reinitialiserClassement()">Réinitialiser le classement</button>
+      <button onclick="reinitialiserClassement()">Réinitialiser le classement</button>
     </div>
   </main>
 
   <footer>
-    <p><a href="index.html" class="red">KABOOM</a> © 2025 - Tous droits reservés</p> 
-    <p>Designed by <a href="https://faycal-boukkour.github.io/portfolio/" target="_blank" class="yellow">Fayçal BOUKKOUR</a></p>
+    <p><a href="index.html" class="yellow">KABOOM</a> © 2025 - Tous droits reservés</p> 
+    <p><a href="mentions.html" class="red">Mentions légales</a></p>
+    <p>Designed by <a href="https://faycal-boukkour.github.io/portfolio/" target="_blank" class="green">Fayçal BOUKKOUR</a></p>
   </footer>
 
-  
   <script>
-    // --- Menu burger ---
     function toggleMenu() {
-    const menu = document.getElementById("menu");
-    const logo = document.querySelector(".navbar .logo");
-
-    menu.classList.toggle("show");
-    logo.classList.toggle("hide");
+      const menu = document.getElementById("menu");
+      const logo = document.querySelector(".navbar .logo");
+      menu.classList.toggle("show");
+      logo.classList.toggle("hide");
     }
 
-    // Récupérer les joueurs
-    let joueurs = JSON.parse(localStorage.getItem("joueurs")) || [];
+    let parties = JSON.parse(localStorage.getItem("parties")) || [];
+    let partieEnCours = JSON.parse(localStorage.getItem("partieEnCours")) || null;
 
     function afficherClassement(){
-      if(joueurs.length === 0){
-        document.getElementById("classementContainer").innerHTML = "<p style='text-align:center;'>Aucune partie enregistrée.</p>";
-        return;
-      }
+  const container = document.getElementById("classementContainer");
+  if(parties.length === 0 && !partieEnCours){
+    container.innerHTML = "<p style='text-align:center;'>Aucune partie enregistrée.</p>";
+    return;
+  }
 
-      // Calculer le total de chaque joueur
-      joueurs.forEach(j => {
-        j.totalScore = j.scores.reduce((acc, val) => acc + val, 0);
-      });
+  let html = "";
 
-      // Trier les joueurs par score croissant (le plus bas en haut)
-      joueurs.sort((a, b) => a.totalScore - b.totalScore);
+  // Afficher toutes les parties terminées
+  parties.forEach((jeu, index) => {
+    html += `<h3>Partie ${index + 1}</h3>`;
+    html += genererTableau(jeu.joueurs);
+  });
 
-      let html = `<table class="score-table">
-        <thead>
-          <tr>
-            <th>Joueur</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${joueurs.map(j => {
-            let couleur = "#000"; // couleur par défaut
-            if(j.totalScore === joueurs[0].totalScore) couleur = "#469F8B"; // gagnant
-            if(j.totalScore === joueurs[joueurs.length-1].totalScore) couleur = "#D52E2E"; // perdant
-            return `<tr>
-                      <td>${j.nom}</td>
-                      <td style="background-color:${couleur}; color:#fff;">${j.totalScore}</td>
-                    </tr>`;
-          }).join("")}
-        </tbody>
-      </table>`;
+  // Afficher la partie en cours uniquement si elle n’est pas finie
+  if(partieEnCours && partieEnCours.statut !== "finie"){
+    html += `<h3>Partie en cours</h3>`;
+    html += genererTableau(partieEnCours.joueurs);
+  }
 
-      document.getElementById("classementContainer").innerHTML = html;
+  container.innerHTML = html;
+}
+
+    function genererTableau(joueurs){
+      joueurs.forEach(j => j.totalScore = j.scores.reduce((acc, val) => acc + val, 0));
+      joueurs.sort((a,b) => a.totalScore - b.totalScore);
+
+      let header = "<th>Joueur</th>";
+      const nbManches = Math.max(...joueurs.map(j => j.scores.length));
+      for(let i=1;i<=nbManches;i++) header += `<th>Manche ${i}</th>`;
+      header += "<th>Total</th>";
+
+      let body = joueurs.map(j=>{
+        let row = `<tr><td>${j.nom}</td>`;
+        for(let i=0;i<nbManches;i++){
+          row += `<td>${j.scores[i] !== undefined ? j.scores[i] : ''}</td>`;
+        }
+        let color = "#fff";
+        if(j === joueurs[0]) color = "#469F8B";
+        else if(j === joueurs[joueurs.length-1]) color = "#D52E2E";
+        row += `<td style="color:${color}; font-weight:bold">${j.totalScore}</td></tr>`;
+        return row;
+      }).join("");
+
+      return `<table class="score-table"><thead><tr>${header}</tr></thead><tbody>${body}</tbody></table>`;
     }
 
-    afficherClassement();
-
     function reinitialiserClassement(){
-      if(confirm("Voulez-vous réinitialiser le classement ?")){
-        localStorage.removeItem("joueurs");
-        localStorage.removeItem("equipes");
-        localStorage.removeItem("nbManches");
+      if(confirm("Voulez-vous réinitialiser toutes les parties ?")){
+        localStorage.removeItem("parties");
+        localStorage.removeItem("partieEnCours");
         location.reload();
       }
     }
+
+    afficherClassement();
   </script>
-  
 </body>
 </html>
