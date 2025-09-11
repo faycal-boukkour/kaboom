@@ -4,14 +4,16 @@
 * {
   font-family: "Chewy", system-ui;
   font-size: 1.15rem;
-}
-
-body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
   background-color: #000000;
   color: #fff;
+  min-height: 100vh;
+  
 }
 
 a {
@@ -29,9 +31,14 @@ h1 {
   text-align: center;
 }
 
-h2, h3 {
+h2 {
   margin-bottom: 15px;
   font-size: 1.5rem;
+}
+
+h3 {
+  margin-bottom: 10px;
+  font-size: 1.25rem;
 }
 
 p {
@@ -50,13 +57,17 @@ p {
   color: #FFC200;
 }
 
+.grey {
+  color: #BDBCBC;
+}
+
 /* Navbar */
 .navbar {
-  background-color: #000000;
+  background-color: #000;
   padding: 30px 0;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  margin-bottom: 4rem;
   
 }
 
@@ -69,12 +80,10 @@ p {
 }
 
 .navbar ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  gap: 15px;
 }
 
 .navbar ul li {
@@ -82,13 +91,11 @@ p {
 }
 
 .navbar ul li a {
-  text-decoration: none;
   color: #D52E2E;
   -webkit-text-stroke: 1px #00000028; 
   -webkit-text-fill-color: #D52E2E; 
   font-size: 1.5rem;
   padding: 8px 15px;
-  border-radius: 5px;
   transition: all 0.3s ease;
   letter-spacing: -3px;
 }
@@ -100,11 +107,11 @@ p {
 }
 
 .navbar ul li a.play {
-  background-color: #000;
+  background-color: transparent;
   color: #FFC200;
   -webkit-text-stroke: 1px #00000028; 
   -webkit-text-fill-color: #FFC200; 
-    letter-spacing: -3px;
+  letter-spacing: -3px;
 }
 
 .navbar ul li a.play:hover {
@@ -116,7 +123,7 @@ p {
 /* Burger menu */
 .burger {
   display: none;
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: #FFC200;
   -webkit-text-stroke: 1px #ffffff; /* contour blanc */
   -webkit-text-fill-color: #c59702; /* couleur de remplissage */
@@ -133,8 +140,21 @@ p {
 /* Main content */
 main.content {
   padding: 20px;
-  max-width: 800px; 
+  max-width: 900px; 
   margin: auto;
+}
+
+main.play {
+  background: url("../img/wallpaper_card_fn.png") no-repeat center/cover;
+  border-radius: 20px;
+}
+
+main.result {
+  background: url("../img/wallpaper_fn.png") no-repeat center/cover;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .carte {
@@ -156,7 +176,7 @@ main.content {
 
 /* Configuration */
 .config {
-  border: 2px solid #111;
+  border: none;
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -192,11 +212,11 @@ button {
   justify-content: center;
   align-items: center;
   align-self: center;
-  padding: 6px 20px;
+  padding: 4px 15px;
   border: none;
   border-radius: 8px;
-  background-color: #000;
-  color: #469F8B;
+  background-color: #FFC200;
+  color: #000;
   box-shadow: 0 4px 8px rgba(254, 252, 252, 0.1);
   font-size: 1em;
   cursor: pointer;
@@ -210,27 +230,28 @@ button span {
 }
 
 button:hover:not(:disabled) {
-  background-color: #FFC200;
-  color: #000;
+  background-color: #D52E2E;
+  color: #fff;
 }
 
 /* Bouton KABOOM */
 .btn-kaboom {
   display: inline-block;
-  padding: 25px 50px;
+  padding: 20px 50px;
   background: url('../img/logo_sf.png') no-repeat center/contain;
+  background-color: #469F8B;
   border: none;
   cursor: pointer;
   text-decoration: none;
   font-weight: bold;
   text-align: center;
   border-radius: 6px; 
-  box-shadow: 0 4px 8px rgba(254, 252, 252, 0.1);
   transition: all 0.5s ease;
 }
 
 .btn-kaboom:hover:not(:disabled) {
-  background-color: #469F8B;
+  background-color: #000;
+  border: 1px solid #FFC200;
 }
 
 button:disabled {
@@ -285,10 +306,45 @@ table.score-table td input {
   width: 60px;
 }
 
-/* Manche gagnante */
-table.score-table td.winner {
-  background-color: lightgreen !important;
-  color: #000;
+
+.stamp {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #469F8B; /* rouge bordeaux */
+  display: inline-block;
+  opacity: 0;
+  transform: scale(2) rotate(-10deg);
+  letter-spacing: 3px;
+  animation: stamp 0.6s ease-out forwards, shake 0.3s 0.6s ease-in-out 2; 
+  /* stamp : apparition et rebond, shake : petit tremblement */
+  animation-fill-mode: forwards;
+}
+
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: scale(2) rotate(-10deg);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.95) rotate(3deg);
+  }
+  80% {
+    transform: scale(1.05) rotate(-2deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+/* petit tremblement léger pour simuler l’encre qui se fixe */
+@keyframes shake {
+  0% { transform: translate(0px, 0px) rotate(0deg); }
+  25% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 1px) rotate(-1deg); }
+  75% { transform: translate(1px, 0px) rotate(0deg); }
+  100% { transform: translate(0px, 0px) rotate(0deg); }
 }
 
 /* Footer */
@@ -303,8 +359,28 @@ footer {
   margin-top: 20px;
 }
 
+footer p, footer a {
+  font-size: 0.9rem;
+}
+
+
 /* Responsive */
 @media screen and (max-width: 768px) {
+  * {
+    font-size: 1rem;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
 
   .navbar {
     position: relative;
@@ -372,19 +448,10 @@ footer {
   main.content {
     padding: 10px;
   }
-  
-  h1 {
-    font-size: 1.5rem;
-  }
 
-  h3 {
-    font-size: 1.4rem;
-  }
-
-  .carte-large {
-    max-width: 100%;
-    object-fit: contain;
-    height: auto;
+  .large-card { 
+    object-fit:contain;
+    max-height: 120px;
   }
 
   input[type="number"], input[type="text"] {
@@ -397,6 +464,19 @@ footer {
   
   footer {
     flex-direction: column;
+    gap: 5px;
+  }
+
+  footer p:nth-child(1) {
+    order: 1; /* KABOOM reste premier */
+  }
+
+  footer p:nth-child(3) {
+    order: 2; /* Designed by reste deuxième */
+  }
+
+  footer p:nth-child(2) {
+    order: 3; /* Mentions légales devient dernier */
   }
 }
 
