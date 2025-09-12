@@ -12,20 +12,23 @@
 <body>
   <nav class="navbar">
     <div class="logo">
-      <img src="assets/img/logo_sf.png" alt="Logo">
+      <a href="index.html"><img src="assets/img/logo_sf.webp" alt="Logo"></a>
     </div>
     <div class="burger" onclick="toggleMenu()">☰</div>
     <ul id="menu">
       <li><a href="index.html">Accueil</a></li>
       <li><a href="classement.html">Classement</a></li> 
       <li><a href="jouer.html" class="play">Jouer</a></li>
-      <li class="logo-burger"><a href="index.html"><img src="assets/img/logo_sf.png" alt="Logo"></a></li>
+      <li class="logo-burger"><a href="index.html"><img src="assets/img/logo_sf.webp" alt="Logo"></a></li>
     </ul>
   </nav>
 
   <main class="content">
-    <section class="welcome">
-        <h1>Bienvenue dans le jeu de cartes KABOOM💥</h1>
+    <section>
+        <div class="title"> 
+          <h1>Bienvenue dans le jeu de cartes</h1>
+          <h2>💥 <span class="kaboom">​KABOOM</span> 💥</h2> 
+        </div>
 
         <h2 class="grey">🧙🏻‍♂️​ Introduction</h2>
         <p>KABOOM est un jeu de cartes stratégique pour 2 à 6 joueurs, qui combine anticipation, tactique et parfois un peu de chance. Chaque participant reçoit 4 cartes et, au début de la partie, ne peut en regarder que deux, le suspense est garanti… !</p> 
@@ -44,71 +47,71 @@
       <h3>🔢 Les cartes numériques</h3>
       <p>Les cartes numériques correspondent à leur valeur numérique.</p> 
       <div class="carte">
-          <img src="assets/img/1-2-3-4.png" alt="carte" class="large-card">
+          <img src="assets/img/1-2-3-4.webp" alt="carte" class="large-card">
           <p><span class="green">1 à 4 </span>: Ces cartes sont apréciées et servent à réduire votre score.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/5-6.png" alt="carte" ">
+          <img src="assets/img/5-6.webp" alt="carte">
           <p><span class="yellow">5 & 6 </span>: Des cartes d'une valeur intermediaire, elles peuvent servir aussi mais le but est d’avoir le moins de points possible.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/7-8.png" alt="carte">
+          <img src="assets/img/7-8.webp" alt="carte">
           <p><span class="red">7 & 8 </span>: Permettent de regarder une de vos cartes. Cela vous aide à mieux planifier vos prochains tours et à anticiper vos actions.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/9-10.png" alt="carte">
+          <img src="assets/img/9-10.webp" alt="carte">
           <p><span class="red">9 & 10 </span>: Permettent de regarder une carte chez un autre joueur. Cette action stratégique vous donne un aperçu du jeu des adversaires pour prendre l’avantage.</p>
       </div>
 
       <h3 class="yellow">⚠️​​ Les cartes d’action</h3>
       <p>Les cartes d’action sont des cartes spéciales qui permettent de manipuler vos cartes ou d’interagir avec vos adversaires.</p>
       <div class="carte">
-          <img src="assets/img/switch.png" alt="carte">
+          <img src="assets/img/switch.webp" alt="carte">
           <p><span class="yellow">SWITCH </span>: échangez une carte avec un autre joueur de votre choix sans la regarder.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/radar.png" alt="carte">
+          <img src="assets/img/radar.webp" alt="carte">
           <p><span class="yellow">RADAR </span>: regardez une carte chez chaque joueur ou deux de vos cartes pour planifier votre stratégie.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/drop.png" alt="carte">
+          <img src="assets/img/drop.webp" alt="carte">
           <p><span class="yellow">DROP </span>: jetez une carte de votre main pour réduire votre score ou vous débarrasser d’une carte indésirable.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/gift.png" alt="carte">
+          <img src="assets/img/gift.webp" alt="carte">
           <p><span class="yellow">GIFT </span>: donnez une carte à un autre joueur sans rien récupérer en retour.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/joker.png" alt="carte">
+          <img src="assets/img/joker.webp" alt="carte">
           <p><span class="yellow">JOKER </span>: regardez une carte chez chaque joueur puis échangez-en une de vos cartes.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/bing.png" alt="carte">
+          <img src="assets/img/bing.webp" alt="carte">
           <p><span class="yellow">BING </span>: doit être jetée mais attention, elle peut faire sauter le tour de ton partenaire en mode équipe.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/bong.png" alt="carte">
+          <img src="assets/img/bong.webp" alt="carte">
           <p><span class="yellow">BONG </span>: ne peut être jouée que si un KA-BING est présent et fait passer le tour du joueur suivant.</p>
       </div>   
 
       <h3 class="red">🎲 Les cartes lourdes</h3>      
       <p>Les cartes lourdes sont des cartes qui peuvent avoir des effets sur le jeu.</p>
       <div class="carte">
-          <img src="assets/img/kaboom-rouge.png" alt="carte">
+          <img src="assets/img/kaboom-rouge.webp" alt="carte">
           <p><span class="red">KA-BOOM </span> : carte spéciale lourde très puissante, impacte fortement le jeu.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/grrr.png" alt="carte">
+          <img src="assets/img/grrr.webp" alt="carte">
           <p><span class="red">+20 </span>: carte lourde qui augmente votre score de 20 points si non jetée.</p>
       </div> 
 
       <h3 class="green">🍀 Les cartes bénéfiques</h3>
       <div class="carte">
-          <img src="assets/img/kaboom-vert.png" alt="carte">
+          <img src="assets/img/kaboom-vert.webp" alt="carte">
           <p><span class="green">KA-BOOM </span>: carte spéciale rare qui vaut 0 points, idéale pour réduire votre score.</p>
       </div>
       <div class="carte">
-          <img src="assets/img/yeaah.png" alt="carte">
+          <img src="assets/img/yeaah.webp" alt="carte">
           <p><span class="green">-1 </span>: carte rare qui retire 1 point de votre total pour prendre l’avantage.</p>
       </div>   
     </section>
@@ -121,10 +124,12 @@
       <p>👥 2 joueurs : la partie se déroule en 4 manches. C’est un duel intense en face à face où chaque décision compte.</p>
       <p>👥3 joueurs : la partie se joue en 3 manches. Un format rapide et dynamique, idéal pour des parties courtes et stratégiques.</p>
       <p>👥 4 joueurs : la partie se déroule en 4 manches. Deux modes sont possibles :</p>
+      <br>
       <ul>
         <li> <span class="red">Mode solo </span>: chaque joueur tente de minimiser son propre score.</li>
-        <li> <span class="red">Mode équipe 2vs2 </span> : les joueurs se regroupent en deux équipes. Les scores des partenaires sont additionnés à chaque manche, les cartes d'actions peuvent être partagées par les joueurs de la même équipe, ce qui demande une vraie coordination et de la complicité pour surprendre l’équipe adverse.</li>
+        <li> <span class="red">Mode équipe </span> : En 2vs2, les joueurs se regroupent en deux équipes. Les scores des partenaires sont additionnés à chaque manche, les cartes d'actions peuvent être partagées par les joueurs de la même équipe, ce qui demande une vraie coordination et de la complicité pour surprendre l’équipe adverse.</li>
       </ul>
+      <br>
       <p>👥 5 joueurs : la partie se joue en 5 manches. Les interactions sont nombreuses et les coups de bluff deviennent essentiels pour s’imposer.</p>
       <p>👥 6 joueurs : la partie se déroule en 6 manches. C’est le mode le plus intense, idéal pour de grands groupes. La stratégie collective et la lecture du jeu des adversaires font toute la différence.</p>
       </section>
