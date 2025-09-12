@@ -70,47 +70,57 @@ p {
   letter-spacing: -2px;
 }
 
+/* Container KABOOM */
+.kaboom-container {
+  display: inline-block;
+  position: relative;
+}
+
+/* Mot KABOOM avec explosion */
 .kaboom {
   display: inline-block;
   font-size: 2.5rem;
   font-weight: bold;
-  color: #D52E2E;
+  color: #B22447;
   position: relative;
+  z-index: 2;
   animation: explode 1s ease-out forwards;
 }
 
-/* Animation d’explosion */
+/* Particules */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #FFC200;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  opacity: 0;
+}
+
+.particle1 { animation: particleAnim 0.8s forwards 0s; }
+.particle2 { animation: particleAnim 0.8s forwards 0.1s; }
+.particle3 { animation: particleAnim 0.8s forwards 0.2s; }
+.particle4 { animation: particleAnim 0.8s forwards 0.3s; }
+.particle5 { animation: particleAnim 0.8s forwards 0.4s; }
+
 @keyframes explode {
-  0% {
-    transform: scale(1) rotate(0deg);
-    color: #B22447;
-    text-shadow: none;
-  }
-  20% {
-    transform: scale(1.5) rotate(-15deg);
-    color: #FFC200; /* flash jaune */
-    text-shadow: 2px 2px #B22447;
-  }
-  40% {
-    transform: scale(1.3) rotate(10deg);
-    color: #FF6B00;
-    text-shadow: 3px 3px #B22447;
-  }
-  60% {
-    transform: scale(1.6) rotate(-5deg);
-    color: #FF0000;
-    text-shadow: 4px 4px #B22447;
-  }
-  80% {
-    transform: scale(1.4) rotate(5deg);
-    color: #FF6B00;
-    text-shadow: 2px 2px #B22447;
-  }
-  100% {
-    transform: scale(1) rotate(0deg);
-    color: #D52E2E;
-    text-shadow: none;
-  }
+  0%   { transform: scale(1) rotate(0deg); color: #B22447; text-shadow: none; }
+  20%  { transform: scale(1.5) rotate(-15deg); color: #FFC200; text-shadow: 2px 2px #B22447; }
+  40%  { transform: scale(1.3) rotate(10deg); color: #FF6B00; text-shadow: 3px 3px #B22447; }
+  60%  { transform: scale(1.6) rotate(-5deg); color: #FF0000; text-shadow: 4px 4px #B22447; }
+  80%  { transform: scale(1.4) rotate(5deg); color: #FF6B00; text-shadow: 2px 2px #B22447; }
+  100% { transform: scale(1) rotate(0deg); color: #B22447; text-shadow: none; }
+}
+
+@keyframes particleAnim {
+  0%   { transform: translate(0,0) scale(1); opacity: 1; }
+  25%  { transform: translate(-20px,-30px) scale(1.2); opacity: 1; }
+  50%  { transform: translate(25px,-25px) scale(0.8); opacity: 1; }
+  75%  { transform: translate(-15px,20px) scale(1); opacity: 0.8; }
+  100% { transform: translate(0,-10px) scale(0); opacity: 0; }
 }
 
 /* Navbar */
