@@ -207,6 +207,103 @@ main.result {
   align-items: center;
 }
 
+section.landing {
+  position: relative;
+}
+
+.landing-card {
+  width: 500px;
+  height: auto;
+}
+
+.absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-0%, -50%);
+  z-index: -1; /* Passe derrière */
+  opacity: 0.8; /* Optionnel si tu veux un effet "filigrane" */
+}
+
+.star-1{
+  width: 80px;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  animation: star 10s ease-in-out 2s infinite;
+}
+
+@keyframes star {
+    0%{
+        transform: translateZ(15px);
+    }
+    40%{
+        transform: translateY(10px);
+
+    }
+    80%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: translateZ(-15px);
+    }
+    
+}
+
+.star-2{
+  width: 50px;
+  height: auto;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    animation: star 10s ease-in-out 2s infinite;
+}
+
+@keyframes vasy {
+    0%{
+        transform: translateZ(15px);
+    }
+    20%{
+        transform: translateY(10px);
+    }
+    40%{
+        transform: translateX(10px);
+    }
+    60%{
+        transform: translateY(-10px);
+    }
+    80%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: translateZ(-15px);
+    }
+    
+}
+
+.piggy{
+    position: absolute;
+    height:120px;
+    top: 60px;
+    left: 50px;
+    animation: piggy 10s ease-in-out 2s infinite;
+}
+@keyframes piggy {
+    0%{
+        transform: translateZ(15px);
+    }
+    40%{
+        transform: translateY(10px);
+    }
+    80%{
+        transform: translateY(-10px);
+    }
+    100%{
+        transform: translateZ(-15px);
+    }
+}
+
 .carte {
   display: flex;
   justify-content: center;
@@ -504,6 +601,10 @@ footer p, footer a {
     margin-top: 100px;
   }
 
+  .piggy{
+    display: none;
+}
+
   .large-card { 
     object-fit:contain;
     max-height: 120px;
@@ -535,79 +636,5 @@ footer p, footer a {
   }
 }
 
-section.landing {
-  position: relative;
-}
-
-.landing-card {
-  width: 500px;
-  height: auto;
-}
-
-.absolute {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-0%, -50%);
-  z-index: -1; /* Passe derrière */
-  opacity: 0.8; /* Optionnel si tu veux un effet "filigrane" */
-}
-
-.star-1{
-  width: 80px;
-  height: auto;
-  position: absolute;
-  top: 20px;
-  right: 50px;
-  animation: star 10s ease-in-out 2s infinite;
-}
-
-@keyframes star {
-    0%{
-        transform: translateZ(15px);
-    }
-    40%{
-        transform: translateY(10px);
-
-    }
-    80%{
-        transform: rotate(180deg);
-    }
-    100%{
-        transform: translateZ(-15px);
-    }
-    
-}
-
-.star-2{
-  width: 50px;
-  height: auto;
-    position: absolute;
-    top: 20px;
-    right: 0px;
-    animation: star 10s ease-in-out 2s infinite;
-}
-
-@keyframes vasy {
-    0%{
-        transform: translateZ(15px);
-    }
-    20%{
-        transform: translateY(10px);
-    }
-    40%{
-        transform: translateX(10px);
-    }
-    60%{
-        transform: translateY(-10px);
-    }
-    80%{
-        transform: rotate(180deg);
-    }
-    100%{
-        transform: translateZ(-15px);
-    }
-    
-}
 
 
