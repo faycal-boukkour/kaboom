@@ -10,7 +10,7 @@
 }
 
 body {
-  background-color: #000000;
+  background-color: #000;
   color: #fff;
   min-height: 100vh;
   
@@ -79,49 +79,33 @@ p {
 /* Mot KABOOM avec explosion */
 .kaboom {
   display: inline-block;
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: bold;
-  color: #D52E2E;
+  color: #fbe260;
   position: relative;
   z-index: 2;
-  animation: explode 1s ease-out forwards;
+  animation: kaboomColors 3s infinite linear, kaboomZoom 3s infinite ease-in-out;
 }
 
-/* Particules */
-.particle {
-  position: absolute;
-  width: 6px;
-  height: 6px;
-  background: #FF6B00;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  z-index: 1;
-  opacity: 0;
+@keyframes kaboomColors {
+  0%   { color: #fbe260; }  /* jaune clair */
+  50%  { color: #FFC200; }  /* doré */
+  25%  { color: #FF6B00; }  /* orange vif */
+  75%  { color: #D52E2E; }  /* rouge */
+  50%  { color: #FFC200; }  /* doré */
+  25%  { color: #FF6B00; }  /* orange vif */
+  100% { color: #fbe260; }  /* retour au début */
 }
 
-.particle1 { animation: particleAnim 0.8s forwards 0s; }
-.particle2 { animation: particleAnim 0.8s forwards 0.1s; }
-.particle3 { animation: particleAnim 0.8s forwards 0.2s; }
-.particle4 { animation: particleAnim 0.8s forwards 0.3s; }
-.particle5 { animation: particleAnim 0.8s forwards 0.4s; }
-
-@keyframes explode {
-  0%   { transform: scale(1) rotate(0deg); color: #D52E2E; text-shadow: none; }
-  20%  { transform: scale(1.5) rotate(-15deg); color: #FFC200; text-shadow: 2px 2px #D52E2E; }
-  40%  { transform: scale(1.3) rotate(10deg); color: #FF6B00; text-shadow: 3px 3px #D52E2E; }
-  60%  { transform: scale(1.6) rotate(-5deg); color: #FF0000; text-shadow: 4px 4px #D52E2E; }
-  80%  { transform: scale(1.4) rotate(5deg); color: #FF6B00; text-shadow: 2px 2px #D52E2E; }
-  100% { transform: scale(1) rotate(0deg); color: #D52E2E; text-shadow: none; }
+/* Animation du zoom */
+@keyframes kaboomZoom {
+  0%   { transform: scale(1); }
+  25%  { transform: scale(1.02); }
+  50%  { transform: scale(1.04); } /* zoom */
+  75%  { transform: scale(1.02); }
+  100% { transform: scale(1); }   /* retour normal */
 }
 
-@keyframes particleAnim {
-  0%   { transform: translate(0,0) scale(1); opacity: 1; }
-  25%  { transform: translate(-20px,-30px) scale(1.2); opacity: 1; }
-  50%  { transform: translate(25px,-25px) scale(0.8); opacity: 1; }
-  75%  { transform: translate(-15px,20px) scale(1); opacity: 0.8; }
-  100% { transform: translate(0,-10px) scale(0); opacity: 0; }
-}
 
 /* Navbar */
 .navbar {
@@ -544,6 +528,81 @@ footer p, footer a {
   footer p:nth-child(2) {
     order: 3; /* Mentions légales devient dernier */
   }
+}
+
+section.landing {
+  position: relative;
+}
+
+.landing-card {
+  width: 500px;
+  height: auto;
+}
+
+.absolute {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-0%, -50%);
+  z-index: -1; /* Passe derrière */
+  opacity: 0.8; /* Optionnel si tu veux un effet "filigrane" */
+}
+
+.star-1{
+  width: 80px;
+  height: auto;
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  animation: star 10s ease-in-out 2s infinite;
+}
+
+@keyframes star {
+    0%{
+        transform: translateZ(15px);
+    }
+    40%{
+        transform: translateY(10px);
+
+    }
+    80%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: translateZ(-15px);
+    }
+    
+}
+
+.star-2{
+  width: 50px;
+  height: auto;
+    position: absolute;
+    top: 20px;
+    right: 0px;
+    animation: star 10s ease-in-out 2s infinite;
+}
+
+@keyframes vasy {
+    0%{
+        transform: translateZ(15px);
+    }
+    20%{
+        transform: translateY(10px);
+    }
+    40%{
+        transform: translateX(10px);
+    }
+    60%{
+        transform: translateY(-10px);
+    }
+    80%{
+        transform: rotate(180deg);
+    }
+    100%{
+        transform: translateZ(-15px);
+    }
+    
 }
 
 
