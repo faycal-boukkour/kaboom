@@ -601,9 +601,14 @@ footer p, footer a {
     margin-top: 100px;
   }
 
-  .piggy{
+  .piggy {
     display: none;
 }
+
+  .card {
+    object-fit:contain;
+    max-height: 100px;
+  }
 
   .large-card { 
     object-fit:contain;
